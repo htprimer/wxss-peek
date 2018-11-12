@@ -13,12 +13,12 @@ function activate(context) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', function () {
-        // The code you place here will be executed every time your command is executed
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!')
-    });
-    context.subscriptions.push(disposable)
+    // let disposable = vscode.commands.registerCommand('extension.sayHello', function () {
+    //     // The code you place here will be executed every time your command is executed
+    //     // Display a message box to the user
+    //     vscode.window.showInformationMessage('Hello World!')
+    // });
+    // context.subscriptions.push(disposable)
 
     const WXML_MODE = { language: 'wxml', scheme: 'file' }
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(WXML_MODE, new WxmlDefinitionProvider()))
@@ -32,15 +32,28 @@ exports.deactivate = deactivate;
 
 class WxmlDefinitionProvider {
     async provideDefinition(doc, position, token) {
-        const wordRange = doc.getWordRangeAtPosition(position)
-        const word = doc.getText(wordRange)
-        const wxss = doc.fileName.replace('.wxml', '.wxss')
-        const uri = vscode.Uri.file(wxss)
+        let wordRange = doc.getWordRangeAtPosition(position, /class="\S+?"/)
+        let word = null
+        let definePath = null
+        if (wordRange) {
+            word = doc.getText(wordRange)
+            word = word.replace(/"/g, '').replace('class=', '')
+            definePath = doc.fileName.replace('.wxml', '.wxss')
+        } else {
+            wordRange = doc.getWordRangeAtPosition(position, /bindtap="\S+?"/)
+            if (!wordRange) {
+                return
+            }
+            word = doc.getText(wordRange)
+            word = word.replace(/"/g, '').replace('bindtap=', '')
+            definePath = doc.fileName.replace('.wxml', '.js')
+        }
+        const uri = vscode.Uri.file(definePath)
         try {
             const wxssPosition = await this.findWxssPostion(uri.path, word)
             return new vscode.Location(uri, wxssPosition)
         } catch (err) {
-            return null
+            return
         }
     }
     async findWxssPostion(path, token) {
@@ -49,14 +62,14 @@ class WxmlDefinitionProvider {
             const lineArray = buffer.toString().split('\n')
             for (let index = 0; index < lineArray.length; index++) {
                 const line = lineArray[index];
-                if (line.match('.'+token)) {
+                if (line.match(token)) {
                     return new vscode.Position(index, 0)
                 }
             }
-
         } catch (err) {
             console.log(err)
             throw err
         }
     }
 } 
+

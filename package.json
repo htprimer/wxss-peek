@@ -3,25 +3,18 @@
     "displayName": "wxss-peek",
     "publisher": "htprimer",
     "description": "jump to wxss definition",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
-        "vscode": "^1.28.0"
+        "vscode": "^1.1.0"
     },
     "categories": [
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello",
         "onLanguage:wxml"
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            }
-        ],
         "languages": [
             {
                 "id": "wxml",
