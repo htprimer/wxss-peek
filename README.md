@@ -1,4 +1,4 @@
-# wxss-peek README
+# wxss-peek
 
 这个是一个微信小程序工程中的wxml文件的插件，为wxss样式提供跳转到定义功能
 
