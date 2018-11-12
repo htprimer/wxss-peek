@@ -1,10 +1,11 @@
 # wxss-peek README
 
-这个是一个微信小程序工程中的wxml文件的插件，为wxss样式提供跳转到定义功能
+这个是一个微信小程序工程中的wxml文件的插件，为wxss样式提供跳转到定义功能
 
 ## Features
 
 * 样式跳转到定义
+
 ![feature](images/feature.gif)
 
 ## Requirements
