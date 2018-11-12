@@ -1,7 +1,8 @@
 # Change Log
-All notable changes to the "wxss-peek" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
+## v0.0.3
+- 添加图标
+## v0.0.2
+- 添加bindtop函数跳转
+- 定义跳转更精准
+## v0.0.1
+- 基本功能实现

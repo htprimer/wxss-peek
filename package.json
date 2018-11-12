@@ -3,7 +3,7 @@
     "displayName": "wxss-peek",
     "publisher": "htprimer",
     "description": "jump to wxss definition",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "engines": {
         "vscode": "^1.1.0"
     },
