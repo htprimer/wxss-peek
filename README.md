@@ -4,7 +4,7 @@
 
 ## Features
 
-* 样式跳转到定义
+* 样式跳转到定义
 ![feature](images/feature.gif)
 
 ## Requirements
@@ -24,6 +24,6 @@
 ### 0.0.1
 
 ### 0.0.2
-* 提高定义匹配准确度
-* 支持bindtap回调跳转
+* 提高定义匹配准确度
+* 支持bindtap回调跳转
 
